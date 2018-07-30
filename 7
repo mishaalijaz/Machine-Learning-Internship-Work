@@ -1,0 +1,67 @@
+from IPython.display import Image, display
+Image('images/07_inception_flowchart.png')
+
+%matplotlib inline
+import matplotlib.pyplot as plt
+import tensorflow as tf
+import numpy as np
+import os
+
+# Functions and classes for loading and using the Inception model.
+import inception
+
+inception.maybe_download()
+
+model = inception.Inception()
+
+def classify(image_path):
+    # Display the image.
+    display(Image(image_path))
+
+    # Use the Inception model to classify the image.
+    pred = model.classify(image_path=image_path)
+
+    # Print the scores and names for the top-10 predictions.
+    model.print_scores(pred=pred, k=10, only_first_name=True)
+    
+    
+image_pathimage_p  = os.path.join(inception.data_dir, 'cropped_panda.jpg')
+classify(image_path)
+
+classify(image_path="images/parrot.jpg")
+
+def plot_resized_image(image_path):
+    # Get the resized image from the Inception model.
+    resized_image = model.get_resized_image(image_path=image_path)
+
+    # Plot the image.
+    plt.imshow(resized_image, interpolation='nearest')
+    
+    # Ensure that the plot is shown.
+    plt.show()
+   
+plot_resized_image(image_path="images/parrot.jpg")
+
+classify(image_path="images/parrot_cropped1.jpg")
+
+classify(image_path="images/parrot_cropped2.jpg")
+
+classify(image_path="images/parrot_cropped3.jpg")
+
+classify(image_path="images/parrot_padded.jpg")
+
+classify(image_path="images/elon_musk.jpg")
+
+classify(image_path="images/elon_musk_100x100.jpg")
+
+plot_resized_image(image_path="images/elon_musk_100x100.jpg")
+
+classify(image_path="images/willy_wonka_old.jpg")
+
+classify(image_path="images/willy_wonka_new.jpg")
+
+
+# This has been commented out in case you want to modify and experiment# This h 
+# with the Notebook without having to restart it.
+# model.close()
+
