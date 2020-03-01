@@ -1,5 +1,6 @@
 # Week4
 
+Tensorflow tutorials.
 
 Tutorial 9:
 https://github.com/wisdal/Image-classification-transfer-learning
